@@ -2,87 +2,84 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 
+'''
 
-def new_weights(weights_shape):
-    '''
-    tf.truncated_normal(shape,
-                        mean=0.0,
-                        stddev=1.0,)函数：
-        ① 产生正太分布随机数，均值和标准差自己设定
-        ② 这个函数产生的随机数与均值的差距不会超过两倍的标准差
-    tf.random_normal(shape,
+tf.truncated_normal(shape,
                     mean=0.0,
                     stddev=1.0,)函数：
-        产生正太分布随机数，均值和标准差自己设定
-    '''
+    ① 产生正太分布随机数，均值和标准差自己设定
+    ② 这个函数产生的随机数与均值的差距不会超过两倍的标准差
 
-    return tf.Variable(tf.truncated_normal(shape=weights_shape))
+tf.random_normal(shape,
+                mean=0.0,
+                stddev=1.0,)函数：
+    产生正太分布随机数，均值和标准差自己设定
+
+tf.nn.conv2d(input, filter, strides, padding)函数：
+    ① input是卷积层的输入
+    ② filter是卷积核，卷积核的shape为 [filter_size, filter_size, input_channel, output_channel]
+    ③ strides是步长，卷积核的四个维度的步长。
+        四个维度分别为 [image-number, x-axis, y-axis, input-channel]
+        其中第一个和最后一个的步长必须为 1，即为 [1, x-axis, y-axis, 1]
+    ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"`
+        其中取值为"SAME"时输入和输出的图片大小相同
+
+tf.nn.max_pool(value, ksize, strides, padding)函数：
+    ① value是池化层的输入
+    ② ksize是池化窗口的大小，取一个四维向量
+        一般情况为 [1, height, width, 1]，因为一般不会在batch和channels上做池化
+    ③ strides是步长，决定了池化后图片尺寸的变化。
+        一般形式为 [1, x-axis, y-axis, 1]
+        当取值为 [1, 2, 2, 1]时，输出的图片的尺寸在width和height上各减少一半
+    ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"
+
+tf.reshape(tensor, shape)函数：
+    转换尺寸
+    如果shape的某一维度的值为 "-1"，则转换后这个维度的尺寸不变
+
+tf.nn.dropout(x, keep_prob)函数：
+    dropout处理，为了解决过拟合
+
+'''
 
 
-def new_biases(biases_length):
+def new_weights(weights_shape):
+    # 为了打破对称性以及0梯度，加入了少量的噪声
+    return tf.Variable(tf.truncated_normal(shape=weights_shape, stddev=0.1))
+
+
+def new_biases(biases_shape):
     # 为了避免神经元结点恒为0，使用较小的正数来初始化偏置项
-    return tf.Variable(tf.constant(0.05, shape=[biases_length]))
+    return tf.Variable(tf.constant(0.05, shape=biases_shape))
 
 
-def add_conv_layer(input,  # 输入
-                   input_channel,  # 输入通道
-                   output_channel,  # 输出通道
-                   filter_size  # 滤波器的宽和高
-                   ):
-    # 卷积核的shape
-    filter_shape = [filter_size, filter_size, input_channel, output_channel]
-
-    # 创建卷积核（权重）、偏置
-    weights = new_weights(weights_shape=filter_shape)
-    biases = new_biases(output_channel)
-
-    '''
-    tf.nn.conv2d(input, filter, strides, padding)函数：
-        ① input是卷积层的输入
-        ② filter是卷积核，卷积核的shape为 [filter_size, filter_size, input_channel, output_channel]
-        ③ strides是步长，卷积核的四个维度的步长。
-            四个维度分别为 [image-number, x-axis, y-axis, input-channel]
-            其中第一个和最后一个的步长必须为 1，即为 [1, x-axis, y-axis, 1]
-        ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"`
-            其中取值为"SAME"时输入和输出的图片大小相同
-    '''
-
-    # 创建卷积层
-    conv_layer = tf.nn.conv2d(input=input,
-                              filter=weights,
-                              strides=[1, 1, 1, 1],
-                              padding='SAME')
-    conv_layer = tf.nn.relu(conv_layer + biases)
-
-    return conv_layer, weights, biases
+def add_conv_layer(input, kernel_size, num_input_channel, num_output_channel, using_relu=True):
+    filter_shape = [kernel_size, kernel_size, num_input_channel, num_output_channel]
+    filter = new_weights(weights_shape=filter_shape)
+    biases = new_biases(biases_shape=[num_output_channel])
+    conv = tf.nn.conv2d(input=input,
+                        filter=filter,
+                        strides=[1, 1, 1, 1],
+                        padding='SAME')
+    if using_relu:
+        conv = tf.nn.relu(conv + biases)
+    return conv
 
 
 def add_pool_layer(input):
-    '''
-    tf.nn.max_pool(value, ksize, strides, padding)函数：
-        ① value是池化层的输入
-        ② ksize是池化窗口的大小，取一个四维向量
-            一般情况为 [1, height, width, 1]，因为一般不会在batch和channels上做池化
-        ③ strides是步长，决定了池化后图片尺寸的变化。
-            一般形式为 [1, x-axis, y-axis, 1]
-            当取值为 [1, 2, 2, 1]时，输出的图片的尺寸在width和height上各减少一半
-        ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"`
-
-    '''
-
-    return tf.nn.max_pool(value=input,
+    return tf.nn.max_pool(input,
                           ksize=[1, 2, 2, 1],
                           strides=[1, 2, 2, 1],
                           padding='SAME')
 
 
-def add_fc_layer(input,
-                 num_input,
-                 num_output):
-    weights = new_weights(weights_shape=[num_input, 1])
-    biases = new_biases(biases_length=num_output)
-    fc = tf.nn.relu(tf.matmul(input, weights) + biases)
-    return fc, weights, biases
+def add_fc_layer(input, num_input, num_output, using_relu=True):
+    weights = new_weights(weights_shape=[num_input, num_output])
+    biases = new_biases(biases_shape=[num_output])
+    fc = tf.matmul(input, weights) + biases
+    if using_relu:
+        fc = tf.nn.relu(fc)
+    return fc
 
 
 # 数据集
@@ -93,85 +90,91 @@ IMG_SIZE = int(np.sqrt(IMG_FLAT_SIZE))
 CHANNEL_NUM = 1
 
 # 占位符
-xs = tf.placeholder(dtype=tf.float32,
-                    shape=[None, IMG_FLAT_SIZE])
-ys = tf.placeholder(dtype=tf.float32,
-                    shape=[None, LABEL_SIZE])
-
-'''
-tf.reshape(tensor, shape)函数：
-    转换尺寸
-    如果shape的某一维度的值为 "-1"，则转换后这个维度的尺寸不变
-'''
+xs = tf.placeholder(dtype=tf.float32, shape=[None, IMG_FLAT_SIZE])
+ys = tf.placeholder(dtype=tf.float32, shape=[None, LABEL_SIZE])
+keep_prob = tf.placeholder(dtype=tf.float32)
 
 # 转换尺寸：2d
-xs_image = tf.reshape(tensor=xs,
-                      shape=[-1, IMG_SIZE, IMG_SIZE, CHANNEL_NUM])
+xs_image = tf.reshape(tensor=xs, shape=[-1, IMG_SIZE, IMG_SIZE, CHANNEL_NUM])
 
 # 第一层卷积和池化
-conv1, conv1_weights, conv1_biases = add_conv_layer(input=xs_image,
-                                                    input_channel=1,
-                                                    output_channel=16,
-                                                    filter_size=5
-                                                    )
+conv1 = add_conv_layer(input=xs_image,
+                       kernel_size=5,
+                       num_input_channel=1,
+                       num_output_channel=16
+                       )
 pool1 = add_pool_layer(conv1)
 
 # 第二层卷积和池化
-conv2, conv2_weights, conv2_biases = add_conv_layer(input=pool1,
-                                                    input_channel=16,
-                                                    output_channel=36,
-                                                    filter_size=5
-                                                    )
+conv2 = add_conv_layer(input=pool1,
+                       kernel_size=5,
+                       num_input_channel=16,
+                       num_output_channel=36
+                       )
 pool2 = add_pool_layer(conv2)
 
 # 转换尺寸：平铺
-image_flatten = tf.reshape(tensor=pool2,
-                           shape=[-1, 1764])
+image_flatten = tf.reshape(tensor=pool2, shape=[-1, 7 * 7 * 36])
 
 # 第一个全连接层
-fc1, fc1_weights, fc1_biases = add_fc_layer(input=image_flatten,
-                                            num_input=1764,
-                                            num_output=128)
+fc1 = add_fc_layer(input=image_flatten,
+                   num_input=7 * 7 * 36,
+                   num_output=1024)
 
 # 第二个全连接层
-fc2, fc2_weights, fc2_biases = add_fc_layer(input=fc1,
-                                            num_input=128,
-                                            num_output=10)
+fc2 = add_fc_layer(input=fc1,
+                   num_input=1024,
+                   num_output=10,
+                   using_relu=False)
 
-# 预测值
-y_pred = tf.nn.softmax(fc2)
+# dropout
+fc2_drop = tf.nn.dropout(fc2, keep_prob=keep_prob)
 
-# loss函数
-cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2(logits=fc2, labels=ys)
+# 输出层
+y_pred = tf.nn.softmax(fc2_drop)
+
+# loss
+cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2(logits=fc2_drop, labels=ys)
 loss = tf.reduce_mean(cross_entropy)
 
-# 优化器
-train_step = tf.train.AdamOptimizer(learning_rate=0.01).minimize(loss)
+# accuracy
+accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(y_pred, axis=1), tf.argmax(ys, axis=1)), dtype=tf.float32))
 
-# 计算准确度
-accuracy = tf.reduce_mean(tf.cast(x=tf.equal(tf.argmax(y_pred, 1), tf.argmax(ys, 1)),
-                                  dtype=tf.float32))
+# 优化器
+train_step = tf.train.AdamOptimizer(0.0001).minimize(loss)
 
 # 训练
-batch_size = 200
-epoch_num = 10
+batch_size = 64
+step_num = 20000
 
 with tf.Session() as sess:
-    init = tf.global_variables_initializer()
-    sess.run(init)
-    for i in range(epoch_num):
-        for j in range(int(mnist.train.num_examples / batch_size)):
-            x_train_data, y_train_data = mnist.train.next_batch(batch_size)
+    sess.run(tf.global_variables_initializer())
+    for i in range(step_num):
+        x_data, y_data = mnist.train.next_batch(batch_size)
+        feed_dict = {
+            xs: x_data,
+            ys: y_data,
+            keep_prob: 0.5
+        }
+        sess.run(train_step, feed_dict=feed_dict)
+        if i % 10 == 0:
             feed_train_dict = {
-                xs: x_train_data,
-                ys: y_train_data
+                xs: x_data,
+                ys: y_data,
+                keep_prob: 1.0
             }
-            sess.run(train_step, feed_dict=feed_train_dict)
-            if j % 50 == 0:
-                feed_test_dict = {
-                    xs: mnist.test.images,
-                    ys: mnist.test.labels
-                }
-                now_loss = sess.run(loss, feed_dict=feed_train_dict)
-                now_accuracy = sess.run(accuracy, feed_dict=feed_test_dict)
-                print("step ", i, " loss:", now_loss, " accuracy:", now_accuracy)
+            feed_val_dict = {
+                xs: mnist.test.images,
+                ys: mnist.test.labels,
+                keep_prob: 1.0
+            }
+            train_loss = sess.run(loss, feed_dict=feed_train_dict)
+            val_loss = sess.run(loss, feed_dict=feed_val_dict)
+            train_accuracy = sess.run(accuracy, feed_dict=feed_train_dict)
+            val_accuracy = sess.run(accuracy, feed_dict=feed_val_dict)
+            print("==== step {0}  train-loss:{1:.3f}\ttrain-accuracy:{2:.3f}\tval-loss:{3:.3f}\tval-accuracy:{4:.3f}"
+                  .format(i,
+                          train_loss,
+                          train_accuracy,
+                          val_loss,
+                          val_accuracy))
