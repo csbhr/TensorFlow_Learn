@@ -49,20 +49,30 @@ step_num = 10000
 batch_size = 200
 
 with tf.Session() as sess:
-    init = tf.global_variables_initializer()
-    sess.run(init)
+    sess.run(tf.global_variables_initializer())
     for i in range(step_num):
-        x_train_data, y_train_data = mnist.train.next_batch(batch_size)
-        feed_train_dict = {
-            xs: x_train_data,
-            ys: y_train_data
+        x_data, y_data = mnist.train.next_batch(batch_size)
+        feed_dict = {
+            xs: x_data,
+            ys: y_data
         }
-        sess.run(train_step, feed_dict=feed_train_dict)
+        sess.run(train_step, feed_dict=feed_dict)
         if i % 10 == 0:
-            feed_test_dict = {
+            feed_train_dict = {
+                xs: x_data,
+                ys: y_data
+            }
+            feed_val_dict = {
                 xs: mnist.test.images,
                 ys: mnist.test.labels
             }
-            now_loss = sess.run(loss, feed_dict=feed_train_dict)
-            now_accuracy = sess.run(accuracy, feed_dict=feed_test_dict)
-            print("step ", i, " loss:", now_loss, " accuracy:", now_accuracy)
+            train_loss = sess.run(loss, feed_dict=feed_train_dict)
+            val_loss = sess.run(loss, feed_dict=feed_val_dict)
+            train_accuracy = sess.run(accuracy, feed_dict=feed_train_dict)
+            val_accuracy = sess.run(accuracy, feed_dict=feed_val_dict)
+            print("==== step {0}  train-loss:{1:.3f}\ttrain-accuracy:{2:.3f}\tval-loss:{3:.3f}\tval-accuracy:{4:.3f}"
+                  .format(i,
+                          train_loss,
+                          train_accuracy,
+                          val_loss,
+                          val_accuracy))
