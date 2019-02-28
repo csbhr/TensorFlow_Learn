@@ -3,19 +3,31 @@ import tensorflow as tf
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 
 '''
-
 tf.truncated_normal(shape,
                     mean=0.0,
-                    stddev=1.0,)函数：
+                    stddev=1.0,
+                    dtype=dtypes.float32,
+                    seed=None,
+                    name=None)函数：
     ① 产生正太分布随机数，均值和标准差自己设定
     ② 这个函数产生的随机数与均值的差距不会超过两倍的标准差
 
 tf.random_normal(shape,
-                mean=0.0,
-                stddev=1.0,)函数：
+                 mean=0.0,
+                 stddev=1.0,
+                 dtype=dtypes.float32,
+                 seed=None,
+                 name=None)函数：
     产生正太分布随机数，均值和标准差自己设定
 
-tf.nn.conv2d(input, filter, strides, padding)函数：
+tf.nn.conv2d(input, 
+             filter, 
+             strides, 
+             padding, 
+             use_cudnn_on_gpu=True, 
+             data_format="NHWC", 
+             dilations=[1, 1, 1, 1], 
+             name=None)函数：
     ① input是卷积层的输入
     ② filter是卷积核，卷积核的shape为 [filter_size, filter_size, input_channel, output_channel]
     ③ strides是步长，卷积核的四个维度的步长。
@@ -24,7 +36,12 @@ tf.nn.conv2d(input, filter, strides, padding)函数：
     ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"`
         其中取值为"SAME"时输入和输出的图片大小相同
 
-tf.nn.max_pool(value, ksize, strides, padding)函数：
+tf.nn.max_pool(value, 
+               ksize, 
+               strides, 
+               padding, 
+               data_format="NHWC", 
+               name=None)函数：
     ① value是池化层的输入
     ② ksize是池化窗口的大小，取一个四维向量
         一般情况为 [1, height, width, 1]，因为一般不会在batch和channels上做池化
@@ -33,13 +50,12 @@ tf.nn.max_pool(value, ksize, strides, padding)函数：
         当取值为 [1, 2, 2, 1]时，输出的图片的尺寸在width和height上各减少一半
     ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"
 
-tf.reshape(tensor, shape)函数：
+tf.reshape(tensor, shape, name=None)函数：
     转换尺寸
     如果shape的某一维度的值为 "-1"，则转换后这个维度的尺寸是通过计算得到的
 
-tf.nn.dropout(x, keep_prob)函数：
+tf.nn.dropout(x, keep_prob, noise_shape=None, seed=None, name=None)函数：
     dropout处理，为了解决过拟合
-
 '''
 
 

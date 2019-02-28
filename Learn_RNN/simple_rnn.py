@@ -2,9 +2,15 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 
-
-# tf.unstack()函数
-# tf.tile()函数
+'''
+tf.unstack(value, num=None, axis=0, name="unstack")函数:
+    把 value 在 axis 维度分解，分解成多个tensor
+tf.stack(value=[x1, x2, ...], axis=0, name="stack")函数:
+    把 x1, x2, ... 在 axis 维度合并
+tf.tile(input, multiples, name=None)函数：
+    ① 把 input 在 multiples 里指定的在各个维度上复制的次数进行重复
+    ② multiples 必须是和 input 维度数相同的列表
+'''
 
 
 def new_weights(weights_shape, name=None):
