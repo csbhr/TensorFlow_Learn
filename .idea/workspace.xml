@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/TensorBoard_Learn/convolutional_neural_network.py" line="8" />
+    <bookmark url="file://$PROJECT_DIR$/Learn_TensorBoard/cnn_tenorboard.py" line="8" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a1d6747-72d1-4bec-b142-6e19a19d74aa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Convolutional_Neural_Network/convolutional_neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/Convolutional_Neural_Network/convolutional_neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learn_Cnn/02_Convolutional_Neural_Network_CN.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Learn_CNN/02_Convolutional_Neural_Network_CN.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learn_Cnn/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Learn_CNN/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learn_Cnn/cnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/Learn_CNN/cnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,22 +20,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Simple_Linear_Model/simple_linear_model.py">
+        <entry file="file://$PROJECT_DIR$/Learn_TensorBoard/cnn_tenorboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TensorBoard_Learn/convolutional_neural_network.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-36">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="3168">
+              <caret line="176" column="62" selection-start-line="176" selection-start-column="62" selection-end-line="176" selection-end-column="62" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -40,10 +32,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Convolutional_Neural_Network/convolutional_neural_network.py">
+        <entry file="file://$PROJECT_DIR$/Learn_RNN/simple_rnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+            <state relative-caret-position="299">
+              <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -52,28 +44,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py">
+        <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="3930" column="54" lean-forward="true" selection-start-line="3930" selection-start-column="54" selection-end-line="3930" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/summary/writer/writer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="97" column="44" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/summary/summary.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="158" column="26" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="26" />
+            <state relative-caret-position="144">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -94,13 +68,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/tesst.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/mnist_conv.py" />
         <option value="$PROJECT_DIR$/02_Convolutional_Neural_Network/convolutional_neural_network(复件).py" />
         <option value="$PROJECT_DIR$/01_Simple_Linear_Model/simple_linear_model.py" />
         <option value="$PROJECT_DIR$/02_Convolutional_Neural_Network/convolutional_neural_network.py" />
         <option value="$PROJECT_DIR$/TensorBoard_Learn/convolutional_neural_network.py" />
         <option value="$PROJECT_DIR$/Convolutional_Neural_Network/convolutional_neural_network.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/Learn_RNN/simple_rnn.py" />
       </list>
     </option>
   </component>
@@ -131,16 +106,6 @@
             <path>
               <item name="TensorFlow_Learn" type="b2602c69:ProjectViewProjectNode" />
               <item name="TensorFlow_Learn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFlow_Learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFlow_Learn" type="462c0819:PsiDirectoryNode" />
-              <item name="Convolutional_Neural_Network" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TensorFlow_Learn" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TensorFlow_Learn" type="462c0819:PsiDirectoryNode" />
-              <item name="Simple_Linear_Model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -173,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.convolutional_neural_network (1)">
+  <component name="RunManager" selected="Python.simple_rnn">
     <configuration name="convolutional_neural_network (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFlow_Learn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -216,48 +181,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="convolutional_neural_network(复件)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TensorFlow_Learn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/02_Convolutional_Neural_Network" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/02_Convolutional_Neural_Network/convolutional_neural_network(复件).py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="mnist_conv" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="TensorFlow_Learn" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist_conv.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="simple_linear_model" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="TensorFlow_Learn" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -280,20 +203,62 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="simple_rnn" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TensorFlow_Learn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Learn_RNN" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Learn_RNN/simple_rnn.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="TensorFlow_Learn" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.simple_linear_model" />
       <item itemvalue="Python.convolutional_neural_network" />
-      <item itemvalue="Python.mnist_conv" />
-      <item itemvalue="Python.convolutional_neural_network(复件)" />
       <item itemvalue="Python.convolutional_neural_network (1)" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.simple_rnn" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.simple_rnn" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.convolutional_neural_network (1)" />
         <item itemvalue="Python.convolutional_neural_network" />
         <item itemvalue="Python.simple_linear_model" />
-        <item itemvalue="Python.convolutional_neural_network(复件)" />
-        <item itemvalue="Python.mnist_conv" />
       </list>
     </recent_temporary>
   </component>
@@ -312,21 +277,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="25" width="1871" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17433676" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.17433676" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18162163" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3783784" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32972974" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32864866" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.32972974" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -341,14 +305,14 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39675677" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3783784" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32972974" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32901832" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.32972974" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -362,14 +326,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-line="12" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/WorkBoard/python/Lib/site-packages/tensorflow/python/ops/random_ops.py" />
     <entry file="file://$PROJECT_DIR$/../DeepLearning/tensorflow_learn/mnist/mnist_conv.py" />
     <entry file="file://C:/WorkBoard/python/Lib/site-packages/tensorflow/python/ops/gen_nn_ops.py" />
@@ -401,13 +357,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="1640" column="4" selection-start-line="1640" selection-start-column="4" selection-end-line="1640" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mnist_conv.py" />
     <entry file="file://$PROJECT_DIR$/02_Convolutional_Neural_Network/convolutional_neural_network(复件).py" />
     <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/ops/nn_ops.py">
@@ -417,30 +366,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/summary/summary.py">
+    <entry file="file://$PROJECT_DIR$/Learn_LinearModel/linear_model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="158" column="26" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/summary/writer/writer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="97" column="44" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="3930" column="54" lean-forward="true" selection-start-line="3930" selection-start-column="54" selection-end-line="3930" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Simple_Linear_Model/simple_linear_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
+        <state relative-caret-position="918">
           <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -448,20 +376,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TensorBoard_Learn/convolutional_neural_network.py">
+    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/ops/gen_array_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="70488">
+          <caret line="3930" column="54" selection-start-line="3930" selection-start-column="54" selection-end-line="3930" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/summary/writer/writer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="97" column="44" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/summary/summary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2160">
+          <caret line="158" column="26" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Learn_CNN/cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-756">
+          <caret selection-end-line="2" selection-end-column="67" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Convolutional_Neural_Network/convolutional_neural_network.py">
+    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/ops/array_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+        <state relative-caret-position="299">
+          <caret line="1011" column="4" selection-start-line="1011" selection-start-column="4" selection-end-line="1011" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/py3.6-tf1.5.0/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="877" column="4" selection-start-line="877" selection-start-column="4" selection-end-line="877" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Learn_TensorBoard/cnn_tenorboard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3168">
+          <caret line="176" column="62" selection-start-line="176" selection-start-column="62" selection-end-line="176" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Learn_RNN/simple_rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="131" column="70" selection-start-line="131" selection-start-column="70" selection-end-line="131" selection-end-column="70" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
