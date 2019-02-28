@@ -1,6 +1,8 @@
 import tensorflow as tf
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 
+### 实现简单线性模型
+
 '''
 不同交叉熵的区别：
 f1：tf.nn.softmax_cross_entropy_with_logits(_sentinel=None,

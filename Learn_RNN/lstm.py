@@ -2,16 +2,13 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 
-### 实现普通的RNN
+### 实现lstm
 
 '''
-tf.unstack(value, num=None, axis=0, name="unstack")函数:
-    把 value 在 axis 维度分解，分解成多个tensor
-tf.stack(value=[x1, x2, ...], axis=0, name="stack")函数:
-    把 x1, x2, ... 在 axis 维度合并
-tf.tile(input, multiples, name=None)函数：
-    ① 把 input 在 multiples 里指定的在各个维度上复制的次数进行重复
-    ② multiples 必须是和 input 维度数相同的列表
+与普通的RNN的区别在于：
+    ① 参数增加
+    ② cell变化
+    ③ 参照教程：https://www.jianshu.com/p/75eeaee7f67d
 '''
 
 
@@ -29,8 +26,29 @@ def new_state(state_shape, name=None):
     return tf.zeros(shape=state_shape, name=name)
 
 
-def rnn_cell(rnn_input, upper_state, weights, biases, name=None):
-    return tf.tanh(tf.matmul(tf.concat([rnn_input, upper_state], axis=1), weights) + biases, name=name)
+def lstm_cell(rnn_input,
+              upper_state,
+              weights_forget, biases_forget,
+              weights_update_thre, biases_update_thre,
+              weights_update, biases_update,
+              weights_output, biases_output,
+              name=None):
+    # weights_forget, biases_forget：“忘记门”参数
+    # weights_update_thre, biases_update_thre, weights_update, biases_update：“更新门”参数
+    # weights_output, biases_output：“输出门”参数
+
+    # 此处的输出门时对上一个state进行的运算
+
+    output_rate = tf.sigmoid(tf.matmul(tf.concat([rnn_input, upper_state], axis=1), weights_output) + biases_output)
+    upper_output = tf.multiply(output_rate, tf.tanh(upper_state))
+
+    forget_rate = tf.sigmoid(tf.matmul(tf.concat([rnn_input, upper_output], axis=1), weights_forget) + biases_forget)
+    update_rate = tf.sigmoid(
+        tf.matmul(tf.concat([rnn_input, upper_output], axis=1), weights_update_thre) + biases_update_thre)
+    update_state = tf.tanh(tf.matmul(tf.concat([rnn_input, upper_output], axis=1), weights_update) + biases_update)
+
+    new_state = tf.add(tf.multiply(forget_rate, upper_state), tf.multiply(update_rate, update_state), name=name)
+    return new_state
 
 
 def add_output_layer(input, num_input, num_output, layer_name=None):
@@ -67,12 +85,25 @@ with tf.name_scope("inputs"):
     x_inputs = tf.unstack(xs_image, axis=1)
     labels = tf.unstack(labels, axis=1)
 
-# RNN
-with tf.name_scope("RNN"):
-    rnn_weights = new_weights(weights_shape=[img_size + state_size, state_size], name="RNN_Weights")
-    rnn_biases = new_biases(biases_shape=[state_size], name="RNN_Biases")
-    tf.summary.histogram(name="RNN/Weights", values=rnn_weights)
-    tf.summary.histogram(name="RNN/Biases", values=rnn_biases)
+# LSTM
+with tf.name_scope("LSTM"):
+    rnn_weights_forget = new_weights(weights_shape=[img_size + state_size, state_size], name="RNN_Weights_Forget")
+    rnn_biases_forget = new_biases(biases_shape=[state_size], name="RNN_Biases_Forget")
+    rnn_weights_update_thre = new_weights(weights_shape=[img_size + state_size, state_size],
+                                          name="RNN_Weights_Update_Thre")
+    rnn_biases_update_thre = new_biases(biases_shape=[state_size], name="RNN_Biases_Update_Thre")
+    rnn_weights_update = new_weights(weights_shape=[img_size + state_size, state_size], name="RNN_Weights_Update")
+    rnn_biases_update = new_biases(biases_shape=[state_size], name="RNN_Biases_Update")
+    rnn_weights_output = new_weights(weights_shape=[img_size + state_size, state_size], name="RNN_Weights_Output")
+    rnn_biases_output = new_biases(biases_shape=[state_size], name="RNN_Biases_Output")
+    tf.summary.histogram(name="RNN/Weights_Forget", values=rnn_weights_forget)
+    tf.summary.histogram(name="RNN/Biases_Forget", values=rnn_biases_forget)
+    tf.summary.histogram(name="RNN/Weights_Update_Thre", values=rnn_weights_update_thre)
+    tf.summary.histogram(name="RNN/Biases_Update_Thre", values=rnn_biases_update_thre)
+    tf.summary.histogram(name="RNN/Weights_Update", values=rnn_weights_update)
+    tf.summary.histogram(name="RNN/Biases_Update", values=rnn_biases_update)
+    tf.summary.histogram(name="RNN/Weights_Output", values=rnn_weights_output)
+    tf.summary.histogram(name="RNN/Biases_Output", values=rnn_biases_output)
 
     states_list = []
     logits_list = []
@@ -88,7 +119,17 @@ with tf.name_scope("RNN"):
     # 遍历时间点
     for i in range(step_num):
         x_input = x_inputs[i]
-        now_state = rnn_cell(x_input, states_list[i], rnn_weights, rnn_biases, name="state_{}".format(i + 1))
+        now_state = lstm_cell(rnn_input=x_input,
+                              upper_state=states_list[i],
+                              weights_forget=rnn_weights_forget,
+                              biases_forget=rnn_biases_forget,
+                              weights_update_thre=rnn_weights_update_thre,
+                              biases_update_thre=rnn_biases_update_thre,
+                              weights_update=rnn_weights_update,
+                              biases_update=rnn_biases_update,
+                              weights_output=rnn_weights_output,
+                              biases_output=rnn_biases_output,
+                              name="state_{}".format(i + 1))
         now_logits, now_y_pred = add_output_layer(input=now_state, num_input=state_size, num_output=label_size,
                                                   layer_name="output_{}".format(i + 1))
         states_list.append(now_state)
@@ -118,7 +159,7 @@ batch_size = 64
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    writer = tf.summary.FileWriter("log_simple_rnn/", sess.graph)
+    writer = tf.summary.FileWriter("log_lstm/", sess.graph)
     merged = tf.summary.merge_all()
     for i in range(step_num):
         x_data, y_data = mnist.train.next_batch(batch_size)

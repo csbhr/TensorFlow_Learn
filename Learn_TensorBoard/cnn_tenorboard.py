@@ -2,6 +2,8 @@ import numpy as np
 import tensorflow as tf
 import tensorflow.examples.tutorials.mnist.input_data as input_data
 
+### 在cnn上应用TensorBoard
+
 
 '''
 Graph：绘制计算图
