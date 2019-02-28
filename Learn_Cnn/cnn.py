@@ -35,7 +35,7 @@ tf.nn.max_pool(value, ksize, strides, padding)函数：
 
 tf.reshape(tensor, shape)函数：
     转换尺寸
-    如果shape的某一维度的值为 "-1"，则转换后这个维度的尺寸不变
+    如果shape的某一维度的值为 "-1"，则转换后这个维度的尺寸是通过计算得到的
 
 tf.nn.dropout(x, keep_prob)函数：
     dropout处理，为了解决过拟合
