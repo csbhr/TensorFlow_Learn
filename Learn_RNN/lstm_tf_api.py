@@ -34,6 +34,8 @@ RNN 的使用过程：
             ① cell 是第一步获取的cell对象
             ② input 是RNN的输入
             ③ initial_state 是第二步获取的初始化state
+            ④ 输出的 cell_outputs 是所有的state，shape=[batch_size, step_num, cell_state_size]
+            ⑤ 输出的 final_state 是最后的state，shape=[2, batch_size, cell_state_size]，即`c_state`和`m_state`
 '''
 
 
