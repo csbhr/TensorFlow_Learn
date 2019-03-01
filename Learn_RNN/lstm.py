@@ -4,6 +4,7 @@ import tensorflow.examples.tutorials.mnist.input_data as input_data
 
 ### 实现lstm
 
+
 '''
 与普通的RNN的区别在于：
     ① 参数增加
@@ -51,11 +52,7 @@ def lstm_cell(rnn_input,
     return new_state
 
 
-def add_output_layer(input, num_input, num_output, layer_name=None):
-    weights = new_weights(weights_shape=[num_input, num_output], name=layer_name + "_weights")
-    biases = new_biases(biases_shape=[num_output], name=layer_name + "_biases")
-    tf.summary.histogram(name=layer_name + "/Weights", values=weights)
-    tf.summary.histogram(name=layer_name + "/Biases", values=biases)
+def add_output_layer(input, weights, biases):
     logits = tf.add(tf.matmul(input, weights), biases)
     output = tf.nn.softmax(logits)
     return logits, output
@@ -78,12 +75,9 @@ with tf.name_scope("inputs"):
 
     # reshape ==> [batch, 时间点, 一个时间点输入]
     xs_image = tf.reshape(xs, shape=[-1, img_size, img_size])
-    labels = tf.reshape(ys, shape=[-1, 1, label_size])
-    labels = tf.tile(labels, multiples=[1, step_num, 1])
 
     # 解绑成一个个时间点
     x_inputs = tf.unstack(xs_image, axis=1)
-    labels = tf.unstack(labels, axis=1)
 
 # LSTM
 with tf.name_scope("LSTM"):
@@ -106,15 +100,8 @@ with tf.name_scope("LSTM"):
     tf.summary.histogram(name="RNN/Biases_Output", values=rnn_biases_output)
 
     states_list = []
-    logits_list = []
-    y_pred_list = []
-    # init_state = new_state([xs.shape[0], state_size], name="state_0")
     init_state = tf.placeholder(dtype=tf.float32, shape=[None, state_size], name="state_0")
-    init_logits, init_y_pred = add_output_layer(input=init_state, num_input=state_size, num_output=label_size,
-                                                layer_name="output_0")
     states_list.append(init_state)
-    logits_list.append(init_logits)
-    y_pred_list.append(init_y_pred)
 
     # 遍历时间点
     for i in range(step_num):
@@ -130,23 +117,31 @@ with tf.name_scope("LSTM"):
                               weights_output=rnn_weights_output,
                               biases_output=rnn_biases_output,
                               name="state_{}".format(i + 1))
-        now_logits, now_y_pred = add_output_layer(input=now_state, num_input=state_size, num_output=label_size,
-                                                  layer_name="output_{}".format(i + 1))
         states_list.append(now_state)
+
+# 输出层
+with tf.name_scope("outputs"):
+    logits_list = []
+    y_pred_list = []
+    output_weights = new_weights(weights_shape=[state_size, label_size], name="output_weights")
+    output_biases = new_biases(biases_shape=[label_size], name="output_biases")
+    tf.summary.histogram(name="outputs/Weights", values=output_weights)
+    tf.summary.histogram(name="outputs/Biases", values=output_biases)
+    for state in states_list:
+        now_logits, now_y_pred = add_output_layer(state, output_weights, output_biases)
         logits_list.append(now_logits)
         y_pred_list.append(now_y_pred)
+    logits, y_pred = logits_list[-1], y_pred_list[-1]
 
 # loss
 with tf.name_scope("loss"):
-    losses = [tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits, labels=label) for logits, label in
-              zip(logits_list, labels)]
-    loss = tf.reduce_mean(losses, name="loss")
+    cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits, labels=ys)
+    loss = tf.reduce_mean(cross_entropy)
     tf.summary.scalar(name="loss", tensor=loss)
 
 # accuracy
 with tf.name_scope("accuracy"):
-    final_y_pred = tf.reduce_mean(y_pred_list, axis=0)
-    accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(final_y_pred, 1), tf.argmax(ys, 1)), dtype=tf.float32))
+    accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(y_pred, 1), tf.argmax(ys, 1)), dtype=tf.float32))
     tf.summary.scalar(name="accuracy", tensor=accuracy)
 
 # 优化器
