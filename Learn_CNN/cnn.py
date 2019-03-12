@@ -10,7 +10,7 @@ tf.truncated_normal(shape,
                     stddev=1.0,
                     dtype=dtypes.float32,
                     seed=None,
-                    name=None)函数：
+                    name=None)
     ① 产生正太分布随机数，均值和标准差自己设定
     ② 这个函数产生的随机数与均值的差距不会超过两倍的标准差
 
@@ -19,7 +19,7 @@ tf.random_normal(shape,
                  stddev=1.0,
                  dtype=dtypes.float32,
                  seed=None,
-                 name=None)函数：
+                 name=None)
     产生正太分布随机数，均值和标准差自己设定
 
 tf.nn.conv2d(input, 
@@ -29,14 +29,38 @@ tf.nn.conv2d(input,
              use_cudnn_on_gpu=True, 
              data_format="NHWC", 
              dilations=[1, 1, 1, 1], 
-             name=None)函数：
+             name=None)
+    卷积函数
     ① input是卷积层的输入
-    ② filter是卷积核，卷积核的shape为 [filter_size, filter_size, input_channel, output_channel]
+    ② filter是卷积核，卷积核的shape为 [filter_height, filter_width, in_channels, out_channels]
     ③ strides是步长，卷积核的四个维度的步长。
         四个维度分别为 [image-number, x-axis, y-axis, input-channel]
         其中第一个和最后一个的步长必须为 1，即为 [1, x-axis, y-axis, 1]
     ④ padding是边缘处理方式，可以取值为 "SAME", "VALID"`
-        其中取值为"SAME"时输入和输出的图片大小相同
+        输出尺寸计算：
+        当 padding='SAME' 时：
+            out_height = ceil(float(in_height) / float(strides[1]))
+            out_width = ceil(float(in_width) / float(strides[2]))
+        当  padding='VALID' 时：
+            out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+            out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+
+tf.nn.conv2d_transpose(value,
+                       filter,
+                       output_shape,
+                       strides,
+                       padding="SAME",
+                       data_format="NHWC",
+                       name=None)
+    反卷积函数
+    ① input是反卷积层的输入，shape为[batch, height, width, in_channels]，典型的NHWC格式
+    ② filter是卷积核，shape为 [filter_height, filter_width, output_channels, in_channels]
+    ③ output_shape是输出的shape，shape为[batch, height, width, output_channels]，必须和filter中的output_channels保持一致
+    ④ strides是步长，卷积核的四个维度的步长。
+        四个维度分别为 [image-number, x-axis, y-axis, input-channel]
+        其中第一个和最后一个的步长必须为 1，即为 [1, x-axis, y-axis, 1]
+    ⑤ padding是边缘处理方式，可以取值为 "SAME", "VALID"`
+        但输出尺寸是由output_shape控制的
 
 tf.nn.max_pool(value, 
                ksize, 
